@@ -15,9 +15,9 @@ class CreateBookingFeatureTable extends Migration
     {
         Schema::create('booking_feature', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('booking_id')->unsigned();
+            $table->unsignedBigInteger('booking_id');
             $table->foreign('booking_id')->references('id')->on('bookings');
-            $table->integer('feature_id')->unsigned();
+            $table->unsignedBigInteger('feature_id');
             $table->foreign('feature_id')->references('id')->on('features');
         });
     }
