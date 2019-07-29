@@ -16,3 +16,5 @@
 // });
 
 Route::get('/', 'PagesController@index');
+Route::resource('features','FeaturesController');
+Route::resource('bookings','BookingsController');
