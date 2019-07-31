@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
+
+
 @section('content')
+<div class="container">
+
     <h1>Edit your Booking</h1>
     {!! Form::open(['action' => ['BookingsController@update', $booking->id], 'method' => 'POST']) !!}
         <div class="form-group">
@@ -22,4 +26,6 @@
         {{ Form::hidden('_method','PUT') }}
         {{Form::submit('Submit'), ['class'=>'btn btn-primary']}}
     {!! Form::close() !!}
+</div>
+
 @endsection

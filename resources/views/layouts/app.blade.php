@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -78,11 +80,12 @@
                 </div>
             </div>
         </nav>
-
-        <div class="container">
-            @include('inc.messages')
-            @yield('content')
-        </div>
+        <div class="col-xl-12 tg">
+                
+                        @include('inc.messages')
+                        @yield('content')
+            
+        </div>   
     </div>
 </body>
 </html>

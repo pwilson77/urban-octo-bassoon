@@ -1,0 +1,16 @@
+.index_bg {
+    background-image: url("../images/test.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: -webkit-fill-available;
+}
+
+.tg {
+    margin: 0px;
+    padding: 0px;
+}
+
+.welcome h1 {
+    color: white;
+}

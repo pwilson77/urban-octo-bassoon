@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1> Bookings </h1>
+  <div class="container">
+      <h1> Bookings </h1>
    
        
     @if(count($bookings) > 0)
@@ -41,4 +42,6 @@
     @else
         <p> No bookings found</p>
     @endif
+  </div>  
+    
 @endsection
