@@ -1,0 +1,40 @@
+@extends('layouts.app')
+
+@section('content')
+    <h1> Bookings </h1>
+   
+       
+    @if(count($bookings) > 0)
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Location</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date Scheduled</th>
+                <th scope="col">Date of Booking</th>
+                <th scope="col"> View/Edit/Cancel</th>
+              </tr>
+            </thead>
+            <tbody>
+             @foreach ($bookings as $booking)       
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ $booking->location }}</td>
+                    <td>{{ $booking->status }}</td>
+                    <td>{{ $booking->booking_date }}</td>
+                    <td>{{ $booking->created_at}} </td>
+                    <td>
+                        <a href="/bookings/{{$booking->id}}"> View</a> /
+                        <a href="/bookings/{{$booking->id}}"> Edit</a> /
+                        <a href="/bookings/{{$booking->id}}"> Cancel</a>
+                    </td>
+                </tr>
+             @endforeach
+            </tbody>
+          </table>  
+          {{ $bookings->links()}}
+    @else
+        <p> No bookings found</p>
+    @endif
+@endsection

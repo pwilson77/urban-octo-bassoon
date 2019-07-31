@@ -11,3 +11,4 @@ class Booking extends Model
         return  $this->belongsToMany('App\Feature');
     }
 }
+

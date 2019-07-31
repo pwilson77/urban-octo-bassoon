@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Booking;
 
 class BookingsController extends Controller
 {
@@ -12,8 +13,9 @@ class BookingsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $bookings = Booking::orderBy('created_at','desc')->paginate(10);
+        return view('bookings.index')->with('bookings', $bookings);
     }
 
     /**
@@ -23,7 +25,7 @@ class BookingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('bookings.create');
     }
 
     /**
@@ -34,7 +36,20 @@ class BookingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'location' => 'required',
+            'booking_date' => 'required'
+        ]);
+
+        //Create booking
+        $booking = new Booking;
+        $booking->location = $request->input('location');
+        $booking->status = "scheduled";
+        $booking->booking_date = $request->input('booking_date');
+
+        $booking->save();
+
+        return redirect('/bookings')->with('success', 'Boooking created');
     }
 
     /**
@@ -45,7 +60,8 @@ class BookingsController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = Booking::find($id);
+        return view('bookings.show')->with('booking', $booking);
     }
 
     /**
