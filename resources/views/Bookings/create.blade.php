@@ -11,6 +11,7 @@
             {{Form::label('booking_date', 'Date and Time you want to book', ['class' => 'col-2 col-form-label'])}}
             {{ Form::input('dateTime-local', 'booking_date', '2019-08-19T13:45:00', ['id' => 'booking_date', 'class' => 'form-control']) }}
         </div>
+        
         {{Form::submit('Submit'), ['class'=>'btn btn-primary']}}
     {!! Form::close() !!}
 @endsection

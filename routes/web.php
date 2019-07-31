@@ -18,3 +18,7 @@
 Route::get('/', 'PagesController@index');
 Route::resource('features','FeaturesController');
 Route::resource('bookings','BookingsController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

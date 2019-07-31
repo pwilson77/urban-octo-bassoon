@@ -13,7 +13,7 @@
                 <th scope="col">Status</th>
                 <th scope="col">Date Scheduled</th>
                 <th scope="col">Date of Booking</th>
-                <th scope="col"> View/Edit/Cancel</th>
+                <th scope="col"> View/Edit/Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -26,8 +26,12 @@
                     <td>{{ $booking->created_at}} </td>
                     <td>
                         <a href="/bookings/{{$booking->id}}"> View</a> /
-                        <a href="/bookings/{{$booking->id}}"> Edit</a> /
-                        <a href="/bookings/{{$booking->id}}"> Cancel</a>
+                        <a href="/bookings/{{$booking->id}}/edit"> Edit</a> /
+                        {!! Form::open(['action' => ['BookingsController@destroy',$booking->id],'method' => 'POST']) !!}
+                          {{Form::hidden('_method', 'DELETE')}}
+                          {{Form::submit('Delete',['class'=>'btn btn-danger'] )}}
+                        {!! Form::close() !!}
+
                     </td>
                 </tr>
              @endforeach
