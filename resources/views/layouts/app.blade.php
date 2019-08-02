@@ -45,6 +45,9 @@
                             <li class="nav-item">
                                     <a class="nav-link" href="/bookings/create">Book a new trip</a>
                             </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="/features">Features </a>
+                            </li>
                         @endauth                     
                     </ul>
 

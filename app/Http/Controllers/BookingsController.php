@@ -95,7 +95,6 @@ class BookingsController extends Controller
             'booking_date' => 'required',
             'status' => 'required'
         ]);
-
         //Create booking
         $booking = Booking::find($id);
         $booking->location = $request->input('location');
@@ -112,7 +111,6 @@ class BookingsController extends Controller
         return redirect('/bookings')->with('success', 'Booking Updated');
     
     }
-
     /**
      * Remove the specified resource from storage. 
      *
@@ -122,8 +120,8 @@ class BookingsController extends Controller
     public function destroy($id)
     {
         $booking = Booking::find($id);
+        $booking->features()->detach();
         $booking->delete();
         return redirect('/bookings')->with('success', 'Booking removed');
-
     }
 }

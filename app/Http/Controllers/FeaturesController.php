@@ -42,7 +42,7 @@ class FeaturesController extends Controller
         $feature->name = $request->name;
         $feature->save();
 
-        return redirect('/bookings')->with('success', 'Feature created');
+        return redirect('/features')->with('success', 'A new feature has been added');
 
     }
 
@@ -88,6 +88,10 @@ class FeaturesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $feature = Feature::find($id);
+        $feature->bookings()->detach();
+        $feature->delete();
+        return redirect('/features')->with('success', 'feature has been removed');
+
     }
 }
