@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Feature;
 
 class FeaturesController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +15,8 @@ class FeaturesController extends Controller
      */
     public function index()
     {
-        //
+        $features = Feature::all(); 
+        return view('features.index')->with('features', $features);
     }
 
     /**
@@ -23,7 +26,7 @@ class FeaturesController extends Controller
      */
     public function create()
     {
-        //
+        return view('features.create');
     }
 
     /**
@@ -34,7 +37,13 @@ class FeaturesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array('name' => 'required|max:50'));
+        $feature = new Feature;
+        $feature->name = $request->name;
+        $feature->save();
+
+        return redirect('/bookings')->with('success', 'Feature created');
+
     }
 
     /**

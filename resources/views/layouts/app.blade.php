@@ -10,13 +10,16 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.full.js" type="text/javascript"> </script>
+    @yield('scripts')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
@@ -37,10 +40,10 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li class="nav-item active">
-                                    <a class="nav-link" href="/bookings">Your Bookings <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="/bookings">My Trips <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="/bookings/create">Create new Booking</a>
+                                    <a class="nav-link" href="/bookings/create">Book a new trip</a>
                             </li>
                         @endauth                     
                     </ul>
@@ -80,12 +83,12 @@
                 </div>
             </div>
         </nav>
-        <div class="col-xl-12 tg">
-                
-                        @include('inc.messages')
-                        @yield('content')
-            
+        <div class="col-xl-12 tg">               
+            @include('inc.messages')
+            @yield('content')            
         </div>   
     </div>
+    
+    
 </body>
 </html>

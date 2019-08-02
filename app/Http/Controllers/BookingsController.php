@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Booking;
+use App\Feature;
 
 class BookingsController extends Controller
 {
@@ -25,8 +26,9 @@ class BookingsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('bookings.create');
+    {   
+        $features = Feature::all();
+        return view('bookings.create')->with('features',$features);
     }
 
     /**
@@ -49,8 +51,8 @@ class BookingsController extends Controller
         $booking->booking_date = $request->input('booking_date');
         $booking->user_id = auth()->user()->id;
         $booking->save();
-
-        return redirect('/bookings')->with('success', 'Boooking created');
+        $booking->features()->sync($request->features,false);
+        return redirect('/bookings')->with('success', 'Your trip has been scheduled');
     }
 
     /**
@@ -74,7 +76,8 @@ class BookingsController extends Controller
     public function edit($id)
     {
         $booking = Booking::find($id);
-        return view('bookings.edit')->with('booking',$booking);
+        $features = Feature::all();
+        return view('bookings.edit')->with('booking',$booking)->with('features',$features);
 
     }
 
@@ -101,6 +104,11 @@ class BookingsController extends Controller
 
         $booking->save();
 
+        if (isset($request->features)) {
+            $booking->features()->sync($request->features);
+        } else {
+            $booking->features()->sync(array());
+        }
         return redirect('/bookings')->with('success', 'Booking Updated');
     
     }
